@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shrimaan Rapuru</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0c0c0c;
+    --bg2: #141414;
+    --bg3: #1c1c1c;
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.14);
+    --text: #f0ede8;
+    --muted: #888;
+    --accent: #c8a96e;
+    --accent2: #e8d5b0;
+    --serif: 'Instrument Serif', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.7;
+    font-size: 16px;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.25rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  nav.scrolled {
+    background: rgba(12,12,12,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom-color: var(--border);
+  }
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 3rem 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse at 30% 60%, black 20%, transparent 70%);
+  }
+
+  .hero-tag {
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .hero-tag::before {
+    content: '';
+    display: block;
+    width: 2rem;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(3.5rem, 9vw, 8rem);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    margin-bottom: 2rem;
+    max-width: 14ch;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent2);
+  }
+
+  .hero-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .hero-desc {
+    max-width: 42ch;
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.8;
+  }
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.75rem;
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #0c0c0c;
+  }
+  .btn-primary:hover { background: var(--accent2); }
+  .btn-outline {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border2);
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* SECTIONS */
+  section {
+    padding: 6rem 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .section-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+    max-width: 6rem;
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 3rem;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .about-text p {
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+    line-height: 1.9;
+    font-size: 0.95rem;
+  }
+  .about-text p strong {
+    color: var(--text);
+    font-weight: 400;
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .stat {
+    background: var(--bg2);
+    padding: 1.75rem 1.5rem;
+  }
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 2.75rem;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 0.35rem;
+  }
+  .stat-label {
+    font-size: 0.78rem;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-bottom: 1px;
+  }
+  .project-card {
+    background: var(--bg2);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .project-card:hover { background: var(--bg3); }
+  .project-card:hover .project-arrow { transform: translate(3px, -3px); }
+  .project-tag {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .project-title {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1.2;
+  }
+  .project-desc {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.8;
+    flex: 1;
+  }
+  .project-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+  .project-stack {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .pill {
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.6rem;
+    border: 1px solid var(--border2);
+    color: var(--muted);
+    border-radius: 1px;
+  }
+  .project-arrow {
+    font-size: 1rem;
+    color: var(--accent);
+    transition: transform 0.2s;
+  }
+
+  /* EXPERIENCE */
+  .exp-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .exp-item {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 2rem;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+  }
+  .exp-item:first-child { border-top: 1px solid var(--border); }
+  .exp-date {
+    font-size: 0.78rem;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    padding-top: 0.25rem;
+  }
+  .exp-content {}
+  .exp-role {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-bottom: 0.15rem;
+  }
+  .exp-org {
+    font-size: 0.82rem;
+    color: var(--accent);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .exp-desc {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .skill-group {
+    background: var(--bg2);
+    padding: 1.75rem;
+  }
+  .skill-group-title {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  .skill-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .skill-item {
+    font-size: 0.88rem;
+    color: var(--muted);
+  }
+
+  /* CONTACT */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .contact-text {
+    font-family: var(--serif);
+    font-size: clamp(1.75rem, 3vw, 2.75rem);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--text);
+  }
+  .contact-text em { font-style: italic; color: var(--accent2); }
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-top: 0.5rem;
+  }
+  .contact-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
+    border: 1px solid var(--border);
+    text-decoration: none;
+    color: var(--text);
+    font-size: 0.9rem;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .contact-link:hover { border-color: var(--accent); background: var(--bg2); }
+  .contact-link span:last-child { color: var(--accent); font-size: 1rem; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    max-width: 100%;
+  }
+  footer p {
+    font-size: 0.78rem;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+
+  /* DIVIDER */
+  .full-border {
+    border-top: 1px solid var(--border);
+    margin: 0 3rem;
+  }
+
+  /* ANIMATE */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-up.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { padding: 0 1.5rem 4rem; }
+    section { padding: 4rem 1.5rem; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    footer { padding: 1.5rem; }
+    .full-border { margin: 0 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">Shrimaan Rapuru</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-tag">Engineer · Builder · Researcher</div>
+  <h1>Shrimaan<br><em>Rapuru</em></h1>
+  <div class="hero-bottom">
+    <p class="hero-desc">
+      Building systems that work for people — not just in theory.
+      Junior at The Early College at Guilford. Research intern at NC A&T.
+      Interested in embedded systems, signal processing, and technology that fits communities.
+    </p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="#contact" class="btn btn-outline">Get in Touch</a>
+    </div>
+  </div>
+</div>
+
+<div class="full-border"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">About</div>
+  <div class="about-grid">
+    <div class="about-text fade-up">
+      <p>
+        I'm a junior at <strong>The Early College at Guilford</strong> — a dual-enrollment program where I take college-level coursework at Guilford College alongside high school — carrying a 4.0 GPA and 8 AP scores of 5.
+      </p>
+      <p>
+        My work sits at the intersection of <strong>hardware and software</strong>. I've built deployed web apps, led robotics hardware systems, and currently research synthetic bacteriophage genome engineering at NC A&T using PCR, Gel Electrophoresis, and Gibson Assembly.
+      </p>
+      <p>
+        Outside the lab, I coordinate weekly meals for <strong>75–100 homeless residents</strong> at Open Door Ministries — funding the program myself through a part-time job — and co-manage a 7-unit residential property portfolio.
+      </p>
+      <p>
+        I'm drawn to engineering problems where the technical solution has to actually fit the people it serves. That gap — between something that works in theory and something that works in the world — is where I want to spend my career.
+      </p>
+    </div>
+    <div class="stats-grid fade-up">
+      <div class="stat">
+        <div class="stat-num">4.0</div>
+        <div class="stat-label">Unweighted GPA</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">8</div>
+        <div class="stat-label">AP Exams (all 5s)</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">700+</div>
+        <div class="stat-label">Jobs analyzed by AI</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">600+</div>
+        <div class="stat-label">Service hours logged</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="full-border"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">Projects</div>
+  <div class="projects-grid">
+
+    <a href="https://us-ai-job-impact-predictor.streamlit.app/" target="_blank" class="project-card fade-up">
+      <div class="project-tag">Data Science · Live App</div>
+      <div class="project-title">US AI Job Impact Predictor</div>
+      <div class="project-desc">
+        Full-stack labor market analytics tool classifying 700+ US occupations by AI automation risk. Features AI explainability, career comparison mode, skill recommendations, and interactive visualizations. Built during internship at ThinkNeuro, LLC.
+      </div>
+      <div class="project-footer">
+        <div class="project-stack">
+          <span class="pill">Python</span>
+          <span class="pill">Streamlit</span>
+          <span class="pill">Pandas</span>
+          <span class="pill">Plotly</span>
+        </div>
+        <span class="project-arrow">↗</span>
+      </div>
+    </a>
+
+    <a href="https://scheduling-platform.streamlit.app/" target="_blank" class="project-card fade-up">
+      <div class="project-tag">Full Stack · Nonprofit Tool</div>
+      <div class="project-title">ODM Volunteer Scheduling Platform</div>
+      <div class="project-desc">
+        A volunteer coordination web app designed for Open Door Ministries. Features a shift dashboard, calendar booking, volunteer roster management, and push notifications — built independently after identifying operational inefficiencies firsthand.
+      </div>
+      <div class="project-footer">
+        <div class="project-stack">
+          <span class="pill">Python</span>
+          <span class="pill">Streamlit</span>
+          <span class="pill">Notifications</span>
+        </div>
+        <span class="project-arrow">↗</span>
+      </div>
+    </a>
+
+    <a href="https://ecg-biosensor.streamlit.app/" target="_blank" class="project-card fade-up">
+      <div class="project-tag">Hardware + ML · Coming Summer 2026</div>
+      <div class="project-title">ECG Biosensor & Signal Analyzer</div>
+      <div class="project-desc">
+        Hardware-software project combining a custom-built ECG biosensor with machine learning for real-time cardiac signal analysis and anomaly detection. Encompasses circuit design, signal processing, and an interactive Streamlit dashboard.
+      </div>
+      <div class="project-footer">
+        <div class="project-stack">
+          <span class="pill">Python</span>
+          <span class="pill">Embedded</span>
+          <span class="pill">ML</span>
+          <span class="pill">Signal Processing</span>
+        </div>
+        <span class="project-arrow">↗</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<div class="full-border"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">Experience</div>
+  <div class="exp-list">
+
+    <div class="exp-item fade-up">
+      <div class="exp-date">Mar 2026 – Present</div>
+      <div class="exp-content">
+        <div class="exp-role">Research Intern</div>
+        <div class="exp-org">NC A&T State University — Applied Science & Technology Lab</div>
+        <div class="exp-desc">Conducting research on synthetic engineering of bacteriophage genomes. Assist in experimental design, data collection, and analysis using PCR, Gel Electrophoresis, and Gibson Assembly.</div>
+      </div>
+    </div>
+
+    <div class="exp-item fade-up">
+      <div class="exp-date">Jan 2026 – Mar 2026</div>
+      <div class="exp-content">
+        <div class="exp-role">Software Engineering & Data Science Intern</div>
+        <div class="exp-org">ThinkNeuro, LLC</div>
+        <div class="exp-desc">Developed the US AI Job Impact Predictor using Python and Streamlit — implemented predictive modeling and data visualization tools. Deployed interactive web app analyzing labor market trends. Completed 100 internship hours.</div>
+      </div>
+    </div>
+
+    <div class="exp-item fade-up">
+      <div class="exp-date">Dec 2025 – Feb 2026</div>
+      <div class="exp-content">
+        <div class="exp-role">Finance Intern</div>
+        <div class="exp-org">GCG Wealth Management, LLC</div>
+        <div class="exp-desc">Supported client services and financial research; gained exposure to wealth management strategies and client portfolio analysis.</div>
+      </div>
+    </div>
+
+    <div class="exp-item fade-up">
+      <div class="exp-date">Jan 2024 – Present</div>
+      <div class="exp-content">
+        <div class="exp-role">Community Service Leader</div>
+        <div class="exp-org">Open Door Ministries</div>
+        <div class="exp-desc">Plan and coordinate weekly breakfast service for 75–100 homeless residents, including menu design, grocery purchasing, and volunteer coordination. Founded clothing & shoe drives collecting 100+ items annually. Built and proposed a volunteer scheduling platform to ODM leadership.</div>
+      </div>
+    </div>
+
+    <div class="exp-item fade-up">
+      <div class="exp-date">2023 – 2025</div>
+      <div class="exp-content">
+        <div class="exp-role">Hardware & Controls Lead</div>
+        <div class="exp-org">FTC Robotics Team — The Early College at Guilford</div>
+        <div class="exp-desc">Designed and wired robot drivetrain and sensor subsystems integrating DC motors, encoders, and REV Control Hub. Debugged control loop failures using motor telemetry and PID tuning, reducing autonomous positioning error by ~30%. Qualified for NC State Championship (2024).</div>
+      </div>
+    </div>
+
+    <div class="exp-item fade-up">
+      <div class="exp-date">Jul 2023 – Present</div>
+      <div class="exp-content">
+        <div class="exp-role">Founder & Head Coach</div>
+        <div class="exp-org">MATHCOUNTS Club — Southwest Guilford Middle School</div>
+        <div class="exp-desc">Founded a MATHCOUNTS club at my own middle school alma mater. Coached 10 students with 4 qualifying for regionals. Designed curriculum emphasizing advanced problem-solving and analytical thinking.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="full-border"></div>
+
+<!-- SKILLS -->
+<section>
+  <div class="section-label">Skills</div>
+  <div class="skills-grid">
+    <div class="skill-group fade-up">
+      <div class="skill-group-title">Programming</div>
+      <div class="skill-items">
+        <span class="skill-item">Python</span>
+        <span class="skill-item">React.js</span>
+        <span class="skill-item">HTML / CSS</span>
+        <span class="skill-item">Git</span>
+        <span class="skill-item">MATLAB (introductory)</span>
+      </div>
+    </div>
+    <div class="skill-group fade-up">
+      <div class="skill-group-title">Data Science</div>
+      <div class="skill-items">
+        <span class="skill-item">Pandas</span>
+        <span class="skill-item">Plotly</span>
+        <span class="skill-item">Streamlit</span>
+        <span class="skill-item">Jupyter Notebook</span>
+        <span class="skill-item">Predictive Modeling</span>
+      </div>
+    </div>
+    <div class="skill-group fade-up">
+      <div class="skill-group-title">Hardware & Lab</div>
+      <div class="skill-items">
+        <span class="skill-item">PCR</span>
+        <span class="skill-item">Gel Electrophoresis</span>
+        <span class="skill-item">Gibson Assembly</span>
+        <span class="skill-item">PID Control</span>
+        <span class="skill-item">CAD Tools</span>
+      </div>
+    </div>
+    <div class="skill-group fade-up">
+      <div class="skill-group-title">Leadership</div>
+      <div class="skill-items">
+        <span class="skill-item">Team Management</span>
+        <span class="skill-item">Public Speaking</span>
+        <span class="skill-item">Curriculum Design</span>
+        <span class="skill-item">Financial Tracking</span>
+        <span class="skill-item">Community Organizing</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="full-border"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Contact</div>
+  <div class="contact-grid">
+    <div class="contact-text fade-up">
+      Interested in <em>working together</em> or just want to connect?
+    </div>
+    <div class="contact-links fade-up">
+      <a href="mailto:srapuru@guilford.edu" class="contact-link">
+        <span>srapuru@guilford.edu</span>
+        <span>↗</span>
+      </a>
+      <a href="https://linkedin.com/in/shrimaan-rapuru-439689329" target="_blank" class="contact-link">
+        <span>LinkedIn</span>
+        <span>↗</span>
+      </a>
+      <a href="https://github.com/shrimaan-rapuru" target="_blank" class="contact-link">
+        <span>GitHub</span>
+        <span>↗</span>
+      </a>
+      <a href="https://share.streamlit.io/user/shrimaan-rapuru" target="_blank" class="contact-link">
+        <span>Streamlit Profile</span>
+        <span>↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Shrimaan Rapuru — High Point, NC</p>
+  <p>Built from scratch · Hosted on GitHub Pages</p>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
