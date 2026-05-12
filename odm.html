@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ODM Scheduling Platform — Shrimaan Rapuru</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0d0d0d; --bg2: #151515; --bg3: #1d1d1d;
+  --border: rgba(255,255,255,0.07); --border2: rgba(255,255,255,0.13);
+  --text: #eeebe5; --muted: #7a7a7a; --muted2: #555;
+  --accent: #c8a96e; --accent2: #e8d5b0;
+  --serif: 'Instrument Serif', Georgia, serif;
+  --sans: 'DM Sans', system-ui, sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--sans); font-weight: 300; line-height: 1.7; font-size: 16px; overflow-x: hidden; }
+
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.25rem 3rem; display: flex; justify-content: space-between; align-items: center; background: rgba(13,13,13,0.94); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); }
+.nav-logo { font-family: var(--serif); font-size: 1.1rem; color: var(--text); text-decoration: none; }
+.nav-back { font-size: 0.82rem; color: var(--muted); text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; display: flex; align-items: center; gap: 0.5rem; transition: color 0.2s; }
+.nav-back:hover { color: var(--accent); }
+
+.hero { padding: 10rem 3rem 5rem; max-width: 1160px; margin: 0 auto; border-bottom: 1px solid var(--border); }
+.hero-tag { font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.75rem; }
+.hero-tag::before { content: ''; width: 2rem; height: 1px; background: var(--accent); }
+.hero h1 { font-family: var(--serif); font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 400; line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 1.5rem; }
+.hero h1 em { font-style: italic; color: var(--accent2); }
+.hero-desc { font-size: 1.05rem; color: var(--muted); max-width: 58ch; line-height: 1.85; margin-bottom: 2.5rem; }
+.hero-meta { display: flex; gap: 2rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+.meta-label { font-size: 0.67rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted2); margin-bottom: 0.2rem; }
+.meta-val { font-size: 0.88rem; color: var(--muted); }
+.hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+.btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.75rem; font-family: var(--sans); font-size: 0.82rem; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; border-radius: 2px; transition: all 0.2s; }
+.btn-primary { background: var(--accent); color: #0d0d0d; }
+.btn-primary:hover { background: var(--accent2); }
+.btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border2); }
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+.content { max-width: 1160px; margin: 0 auto; padding: 0 3rem; }
+
+.story-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 5rem; padding: 5rem 0; border-bottom: 1px solid var(--border); align-items: start; }
+.story-section { margin-bottom: 3rem; }
+.story-section:last-child { margin-bottom: 0; }
+.story-label { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.6rem; }
+.story-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+.story-title { font-family: var(--serif); font-size: 1.5rem; font-weight: 400; margin-bottom: 0.75rem; }
+.story-text { font-size: 0.92rem; color: var(--muted); line-height: 1.9; }
+.story-text + .story-text { margin-top: 1rem; }
+
+.blockquote { border-left: 2px solid var(--accent); padding: 1rem 1.5rem; margin: 1.5rem 0; background: var(--bg2); }
+.blockquote p { font-family: var(--serif); font-size: 1.05rem; font-style: italic; color: var(--accent2); line-height: 1.6; }
+
+.sidebar { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); position: sticky; top: 5rem; }
+.sidebar-item { background: var(--bg2); padding: 1.25rem 1.5rem; }
+.sidebar-label { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem; }
+.sidebar-val { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+.pill-group { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.25rem; }
+.pill { font-size: 0.63rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.2rem 0.5rem; border: 1px solid var(--border2); color: var(--muted); border-radius: 1px; }
+
+.features-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin: 2rem 0; }
+.feature-card { background: var(--bg2); padding: 1.75rem; }
+.feature-icon { font-size: 1.25rem; margin-bottom: 0.75rem; }
+.feature-title { font-size: 0.85rem; font-weight: 500; margin-bottom: 0.4rem; color: var(--text); }
+.feature-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.7; }
+
+.lessons { padding: 4rem 0; border-top: 1px solid var(--border); }
+.lessons-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 2rem; }
+.lesson-card { background: var(--bg2); padding: 1.75rem; }
+.lesson-num { font-family: var(--serif); font-size: 2rem; color: var(--accent); opacity: 0.4; line-height: 1; margin-bottom: 0.75rem; }
+.lesson-title { font-size: 0.88rem; font-weight: 500; color: var(--text); margin-bottom: 0.4rem; }
+.lesson-text { font-size: 0.82rem; color: var(--muted); line-height: 1.75; }
+
+.next-project { padding: 4rem 0; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+.next-label { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted2); margin-bottom: 0.5rem; }
+.next-title { font-family: var(--serif); font-size: 1.5rem; font-weight: 400; }
+
+footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+footer p { font-size: 0.76rem; color: var(--muted); }
+
+.fade-up { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
+.fade-up.visible { opacity: 1; transform: none; }
+
+@media (max-width: 900px) {
+  nav { padding: 1rem 1.5rem; }
+  .hero { padding: 8rem 1.5rem 4rem; }
+  .content { padding: 0 1.5rem; }
+  .story-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .sidebar { position: static; }
+  .features-grid { grid-template-columns: 1fr; }
+  .lessons-grid { grid-template-columns: 1fr; }
+  footer { padding: 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Shrimaan Rapuru</a>
+  <a href="index.html#projects" class="nav-back">← Back to Projects</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">Full Stack · Nonprofit Tool · Proposed Solution</div>
+  <h1>ODM Volunteer<br><em>Scheduling Platform</em></h1>
+  <p class="hero-desc">A full-stack volunteer coordination web app built for Open Door Ministries — featuring a shift dashboard, calendar booking, volunteer roster management, and push notifications.</p>
+  <div class="hero-meta">
+    <div class="meta-item"><div class="meta-label">Timeline</div><div class="meta-val">2024 – 2025</div></div>
+    <div class="meta-item"><div class="meta-label">Context</div><div class="meta-val">Independent · Proposed to ODM leadership</div></div>
+    <div class="meta-item"><div class="meta-label">Organization</div><div class="meta-val">Open Door Ministries, High Point NC</div></div>
+    <div class="meta-item"><div class="meta-label">Status</div><div class="meta-val">Live prototype · Not yet implemented</div></div>
+  </div>
+  <div class="hero-cta">
+    <a href="https://scheduling-platform.streamlit.app/" target="_blank" class="btn btn-primary">View Live App ↗</a>
+    <a href="https://github.com/shrimaan-rapuru" target="_blank" class="btn btn-outline">GitHub</a>
+  </div>
+</div>
+
+<div class="content">
+  <div class="story-grid">
+    <div class="story-body">
+
+      <div class="story-section fade-up">
+        <div class="story-label">The Problem</div>
+        <div class="story-title">Some mornings there were too many volunteers. Other times, not enough.</div>
+        <p class="story-text">I joined Open Door Ministries as a volunteer in January 2024, coordinating weekly breakfast service for 75–100 homeless residents. Within weeks, a pattern became obvious: volunteer coordination was chaotic. Some mornings the kitchen was overcrowded; others, understaffed. Food ran short one week and went to waste the next.</p>
+        <p class="story-text">There was no system for tracking who was coming, what roles needed filling, or where gaps were forming before they became a problem. As someone with a systems-thinking background, I saw a solvable problem.</p>
+      </div>
+
+      <div class="story-section fade-up">
+        <div class="story-label">What I Built</div>
+        <div class="story-title">A complete coordination system — dashboard, calendar, roster, notifications.</div>
+        <p class="story-text">I built a four-view web application in Python and Streamlit, designed specifically for ODM's workflow. The dashboard gives a real-time overview of today's shifts, the next 7 days, and any unassigned roles. The calendar view lets staff create appointments with assigned volunteers, urgency levels, and slot types. The volunteer roster manages availability and role assignments. Settings handles users and push notifications.</p>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">📊</div>
+            <div class="feature-title">Shift Dashboard</div>
+            <div class="feature-desc">Real-time view of today's appointments, next 7 days, unassigned roles, and scheduling analytics.</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">📅</div>
+            <div class="feature-title">Calendar Booking</div>
+            <div class="feature-desc">Month/week/day views with slot availability, appointment creation, urgency levels, and status tracking.</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">👥</div>
+            <div class="feature-title">Volunteer Roster</div>
+            <div class="feature-desc">Add and manage volunteers with role assignments, availability settings, and active status.</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🔔</div>
+            <div class="feature-title">Push Notifications</div>
+            <div class="feature-desc">Automated reminders to reduce no-shows and last-minute coordination gaps.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="story-section fade-up">
+        <div class="story-label">What Happened</div>
+        <div class="story-title">I presented it. It wasn't adopted. That was the real lesson.</div>
+        <p class="story-text">I presented the platform to ODM's operating director with a full written proposal. The feedback wasn't about the software — it worked. The constraints were organizational: data privacy considerations, staff capacity to onboard a new system, existing workflows that a new tool would have to integrate with.</p>
+
+        <div class="blockquote">
+          <p>"My solution didn't fit a system I hadn't fully understood."</p>
+        </div>
+
+        <p class="story-text">I had arrived with an answer before I fully understood the question. The platform was technically sound, but I had underestimated how much an organization's culture, capacity, and existing processes determine whether a technical solution can actually land.</p>
+        <p class="story-text">That experience — building something correct that still didn't fit — shaped how I think about engineering more than any successful implementation would have.</p>
+      </div>
+
+    </div>
+
+    <div class="sidebar fade-up">
+      <div class="sidebar-item">
+        <div class="sidebar-label">Stack</div>
+        <div class="pill-group">
+          <span class="pill">Python</span>
+          <span class="pill">Streamlit</span>
+          <span class="pill">Push Notifications</span>
+        </div>
+      </div>
+      <div class="sidebar-item">
+        <div class="sidebar-label">Views Built</div>
+        <div class="sidebar-val">Dashboard · Calendar · Volunteer Roster · Settings</div>
+      </div>
+      <div class="sidebar-item">
+        <div class="sidebar-label">Outcome</div>
+        <div class="sidebar-val">Proposed to ODM leadership. Not adopted due to organizational constraints. Prototype remains live.</div>
+      </div>
+      <div class="sidebar-item">
+        <div class="sidebar-label">Note</div>
+        <div class="sidebar-val">Independent project built as a proposal. Not officially affiliated with or deployed by ODM.</div>
+      </div>
+      <div class="sidebar-item">
+        <div class="sidebar-label">Live App</div>
+        <div class="sidebar-val"><a href="https://scheduling-platform.streamlit.app/" target="_blank" style="color:var(--accent);text-decoration:none;">scheduling-platform.streamlit.app ↗</a></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lessons fade-up">
+    <div class="story-label">What I Learned</div>
+    <div class="lessons-grid">
+      <div class="lesson-card">
+        <div class="lesson-num">01</div>
+        <div class="lesson-title">Understand before you build</div>
+        <div class="lesson-text">I mapped the technical problem before I fully understood the organizational one. Real solutions require understanding the human system first — its culture, constraints, and capacity — before designing a technical one.</div>
+      </div>
+      <div class="lesson-card">
+        <div class="lesson-num">02</div>
+        <div class="lesson-title">Failure is data</div>
+        <div class="lesson-text">The platform not being adopted wasn't a failure of engineering — it was a failure of scoping. That distinction matters. The lesson wasn't "build better software." It was "understand the system you're building for."</div>
+      </div>
+      <div class="lesson-card">
+        <div class="lesson-num">03</div>
+        <div class="lesson-title">Technically correct ≠ actually useful</div>
+        <div class="lesson-text">This is the central tension I keep returning to in every project: a solution that works in theory isn't the same as a solution that works for a community. Closing that gap is the work of engineering.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="next-project fade-up">
+    <div>
+      <div class="next-label">Next Project</div>
+      <div class="next-title">ECG Biosensor & Signal Analyzer →</div>
+    </div>
+    <a href="https://ecg-biosensor.streamlit.app/" target="_blank" class="btn btn-outline">Coming Summer 2026 ↗</a>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 Shrimaan Rapuru</p>
+  <p><a href="index.html" style="color:var(--muted);text-decoration:none;">← Back to Home</a></p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) { setTimeout(() => entry.target.classList.add('visible'), i * 70); observer.unobserve(entry.target); }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
