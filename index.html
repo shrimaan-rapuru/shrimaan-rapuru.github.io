@@ -34,7 +34,7 @@ nav.scrolled { background: rgba(13,13,13,0.94); backdrop-filter: blur(14px); bor
 .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.82rem; letter-spacing: 0.07em; text-transform: uppercase; transition: color 0.2s; }
 .nav-links a:hover { color: var(--text); }
 
-.hero { min-height: 100vh; display: grid; grid-template-rows: 1fr auto; padding: 0 3rem; position: relative; overflow: hidden; }
+.hero { min-height: 100vh; display: grid; grid-template-rows: 1fr auto; padding: 5rem 3rem 0; position: relative; overflow: hidden; }
 .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px); background-size: 64px 64px; mask-image: radial-gradient(ellipse at 20% 50%, black 10%, transparent 65%); }
 .hero-inner { display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: 1.5rem; }
 .hero-eyebrow { font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.75rem; }
@@ -217,10 +217,17 @@ footer p { font-size: 0.76rem; color: var(--muted); letter-spacing: 0.04em; }
         <span class="proj-arrow">↗</span>
       </div>
     </div>
-    <div class="proj-right">
-      <div><div class="proj-story-label">The Problem</div><div class="proj-story-text">Most AI displacement coverage was abstract and alarming. There was no accessible tool letting individuals understand their own career risk — and what to do about it.</div></div>
-      <div><div class="proj-story-label">What I Built</div><div class="proj-story-text">A predictive model trained on Kaggle labor data, wrapped in an interactive Streamlit app. Users can search 700+ occupations, see a risk score with explanation, compare careers side-by-side, and get skill recommendations.</div></div>
-      <div><div class="proj-story-label">What I Learned</div><div class="proj-story-text">Clean model accuracy means nothing if the interface doesn't make the output interpretable. I rebuilt the UI twice to make explainability actually useful for non-technical users.</div></div>
+    <div class="proj-right" style="justify-content:space-between;">
+      <div style="display:flex;flex-direction:column;gap:1.25rem;">
+        <div><div class="proj-story-label">Occupations Analyzed</div><div class="proj-story-text" style="font-size:2rem;font-family:var(--serif);color:var(--accent);">700+</div></div>
+        <div><div class="proj-story-label">Risk Categories</div><div class="proj-story-text">Low · Medium · High — with explainability for each</div></div>
+        <div><div class="proj-story-label">Key Capabilities</div><div class="proj-story-text">Career comparison · Skill recommendations · Interactive data visualizations · Industry trends</div></div>
+        <div><div class="proj-story-label">Context</div><div class="proj-story-text">Built during internship at ThinkNeuro, LLC · 100 hours · Publicly deployed</div></div>
+      </div>
+      <div style="padding-top:1.5rem;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;">
+        <span style="font-size:0.78rem;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;">Full project story →</span>
+        <span class="proj-arrow">↗</span>
+      </div>
     </div>
   </a>
 
