@@ -17,7 +17,7 @@
       line-height: 1.6;
     }
 
-    /* NAV */
+    /* NAV — full width, white */
     nav {
       background: #fff;
       border-bottom: 1px solid #e5e5e5;
@@ -26,150 +26,66 @@
       justify-content: space-between;
       align-items: center;
     }
-    .nav-name {
-      font-weight: 600;
-      font-size: 1rem;
-      color: #1a1a1a;
-      text-decoration: none;
-    }
-    .nav-links {
-      display: flex;
-      gap: 1.5rem;
-      list-style: none;
-    }
-    .nav-links a {
-      font-size: 0.9rem;
-      color: #555;
-      text-decoration: none;
-    }
+    .nav-name { font-weight: 600; font-size: 1rem; color: #1a1a1a; text-decoration: none; }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a { font-size: 0.9rem; color: #555; text-decoration: none; }
     .nav-links a:hover { color: #1a1a1a; }
 
-    /* WRAPPER */
-    .container {
+    /* INNER CONTAINER — centered, max 760px */
+    .inner {
       max-width: 760px;
       margin: 0 auto;
       padding: 0 2rem;
     }
 
-    /* HERO */
+    /* HERO — full width white strip */
     .hero {
       background: #fff;
-      padding: 4rem 0 3rem;
       border-bottom: 1px solid #e5e5e5;
+      padding: 4rem 0 3rem;
     }
-    .hero h1 {
-      font-size: 2rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-    .hero .role {
-      font-size: 0.95rem;
-      color: #666;
-      margin-bottom: 1.25rem;
-    }
-    .hero p {
-      font-size: 0.95rem;
-      color: #444;
-      max-width: 56ch;
-      line-height: 1.75;
-      margin-bottom: 1.5rem;
-    }
-    .hero-links {
-      display: flex;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-    }
+    .hero h1 { font-size: 2rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .hero .role { font-size: 0.95rem; color: #666; margin-bottom: 1.25rem; }
+    .hero p { font-size: 0.95rem; color: #444; max-width: 56ch; line-height: 1.75; margin-bottom: 1.5rem; }
+    .hero-links { display: flex; gap: 0.75rem; flex-wrap: wrap; }
     .hero-links a {
-      font-size: 0.85rem;
-      color: #1a1a1a;
-      text-decoration: none;
-      border: 1px solid #ccc;
-      padding: 0.4rem 1rem;
-      border-radius: 4px;
+      font-size: 0.85rem; color: #1a1a1a; text-decoration: none;
+      border: 1px solid #ccc; padding: 0.4rem 1rem; border-radius: 4px;
       transition: border-color 0.15s;
     }
     .hero-links a:hover { border-color: #1a1a1a; }
 
-    /* SECTIONS */
-    section {
-      padding: 2.5rem 0;
+    /* SECTIONS — full width white strips with blue-gray gaps between */
+    .section-wrap {
+      background: #fff;
       border-bottom: 1px solid #e5e5e5;
+      padding: 2.5rem 0;
     }
-    section:last-child { border-bottom: none; }
+    .section-wrap:last-of-type { border-bottom: none; }
 
     h2 {
-      font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: #999;
-      margin-bottom: 1.5rem;
+      font-size: 0.75rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      color: #999; margin-bottom: 1.5rem;
     }
 
     /* ABOUT */
-    .about p {
-      font-size: 0.93rem;
-      color: #444;
-      line-height: 1.8;
-      margin-bottom: 1rem;
-    }
+    .about p { font-size: 0.93rem; color: #444; line-height: 1.8; margin-bottom: 1rem; }
     .about p:last-child { margin-bottom: 0; }
 
     /* PROJECTS */
-    .project {
-      margin-bottom: 1.75rem;
-      padding-bottom: 1.75rem;
-      border-bottom: 1px solid #f0f0f0;
-    }
+    .project { margin-bottom: 1.75rem; padding-bottom: 1.75rem; border-bottom: 1px solid #f0f0f0; }
     .project:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
-    .project-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 1rem;
-      margin-bottom: 0.4rem;
-    }
-    .project-title {
-      font-size: 0.97rem;
-      font-weight: 500;
-      color: #1a1a1a;
-    }
-    .project-link {
-      font-size: 0.8rem;
-      color: #555;
-      text-decoration: none;
-      white-space: nowrap;
-      border-bottom: 1px solid #ccc;
-    }
+    .project-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 0.4rem; }
+    .project-title { font-size: 0.97rem; font-weight: 500; color: #1a1a1a; }
+    .project-link { font-size: 0.8rem; color: #555; text-decoration: none; white-space: nowrap; border-bottom: 1px solid #ccc; }
     .project-link:hover { color: #1a1a1a; border-color: #1a1a1a; }
-    .project-desc {
-      font-size: 0.88rem;
-      color: #555;
-      line-height: 1.75;
-      margin-bottom: 0.6rem;
-    }
-    .project-tags {
-      display: flex;
-      gap: 0.4rem;
-      flex-wrap: wrap;
-    }
-    .tag {
-      font-size: 0.72rem;
-      color: #777;
-      background: #f5f5f5;
-      padding: 0.2rem 0.5rem;
-      border-radius: 3px;
-    }
+    .project-desc { font-size: 0.88rem; color: #555; line-height: 1.75; margin-bottom: 0.6rem; }
+    .project-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+    .tag { font-size: 0.72rem; color: #777; background: #f0f4f8; padding: 0.2rem 0.5rem; border-radius: 3px; }
 
     /* EXPERIENCE */
-    .exp-item {
-      display: grid;
-      grid-template-columns: 160px 1fr;
-      gap: 1.5rem;
-      margin-bottom: 1.5rem;
-      padding-bottom: 1.5rem;
-      border-bottom: 1px solid #f0f0f0;
-    }
+    .exp-item { display: grid; grid-template-columns: 160px 1fr; gap: 1.5rem; margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid #f0f0f0; }
     .exp-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
     .exp-date { font-size: 0.8rem; color: #999; padding-top: 0.15rem; }
     .exp-title { font-size: 0.95rem; font-weight: 500; margin-bottom: 0.1rem; }
@@ -177,53 +93,29 @@
     .exp-desc { font-size: 0.85rem; color: #555; line-height: 1.7; }
 
     /* SKILLS */
-    .skills-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.25rem;
-    }
-    .skill-group-title {
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: #1a1a1a;
-      margin-bottom: 0.4rem;
-    }
-    .skill-list {
-      font-size: 0.85rem;
-      color: #555;
-      line-height: 1.8;
-    }
+    .skills-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .skill-group-title { font-size: 0.8rem; font-weight: 500; color: #1a1a1a; margin-bottom: 0.4rem; }
+    .skill-list { font-size: 0.85rem; color: #555; line-height: 1.8; }
 
     /* CONTACT */
-    .contact-links {
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-    }
-    .contact-links a {
-      font-size: 0.9rem;
-      color: #444;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
+    .contact-links { display: flex; flex-direction: column; gap: 0.6rem; }
+    .contact-links a { font-size: 0.9rem; color: #444; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
     .contact-links a:hover { color: #1a1a1a; }
 
-    /* FOOTER */
+    /* FOOTER — full width white */
     footer {
       background: #fff;
+      border-top: 1px solid #e5e5e5;
       padding: 1.5rem 2rem;
       text-align: center;
       font-size: 0.78rem;
       color: #aaa;
-      border-top: 1px solid #e5e5e5;
     }
 
     @media (max-width: 600px) {
       nav { padding: 1rem 1.25rem; }
       .nav-links { gap: 1rem; }
-      .container { padding: 0 1.25rem; }
+      .inner { padding: 0 1.25rem; }
       .exp-item { grid-template-columns: 1fr; gap: 0.25rem; }
       .skills-row { grid-template-columns: 1fr; }
       .hero h1 { font-size: 1.6rem; }
@@ -232,6 +124,7 @@
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
   <a href="#" class="nav-name">Shrimaan Rapuru</a>
   <ul class="nav-links">
@@ -242,17 +135,12 @@
   </ul>
 </nav>
 
-<div class="container">
-
-  <!-- HERO -->
-  <div class="hero">
+<!-- HERO -->
+<div class="hero">
+  <div class="inner">
     <h1>Shrimaan Rapuru</h1>
     <p class="role">High School Student · Engineer · Builder · High Point, NC</p>
-    <p>
-      I'm a junior at The Early College at Guilford interested in building systems that solve real problems.
-      My work spans software, hardware, and community service — from deployed web apps to nonprofit coordination
-      to bacteriophage research at NC A&T.
-    </p>
+    <p>I'm a junior at The Early College at Guilford interested in building systems that solve real problems. My work spans software, hardware, and community service — from deployed web apps to nonprofit coordination to bacteriophage research at NC A&T.</p>
     <div class="hero-links">
       <a href="https://linkedin.com/in/shrimaan-rapuru-439689329" target="_blank">LinkedIn</a>
       <a href="https://github.com/shrimaan-rapuru" target="_blank">GitHub</a>
@@ -260,28 +148,21 @@
       <a href="mailto:srapuru@guilford.edu">Email</a>
     </div>
   </div>
+</div>
 
-  <!-- ABOUT -->
-  <section id="about" class="about">
+<!-- ABOUT -->
+<div class="section-wrap" id="about">
+  <div class="inner about">
     <h2>About</h2>
-    <p>
-      I'm a junior at The Early College at Guilford, a dual-enrollment program where I take college-level
-      coursework at Guilford College. I carry a 4.0 GPA with eight AP scores of 5.
-    </p>
-    <p>
-      Outside of school, I volunteer weekly at Open Door Ministries, coordinating meal service for 75–100
-      homeless residents and funding the program myself through a part-time job at CVS. I also co-manage
-      a 7-unit residential property portfolio and coach a MATHCOUNTS club at my middle school alma mater.
-    </p>
-    <p>
-      I'm currently a research intern at NC A&T's Applied Science & Technology Lab, working on synthetic
-      bacteriophage genome engineering. I'm interested in embedded systems, signal processing, and building
-      technology that actually fits the people it's meant to serve.
-    </p>
-  </section>
+    <p>I'm a junior at The Early College at Guilford, a dual-enrollment program where I take college-level coursework at Guilford College. I carry a 4.0 GPA with eight AP scores of 5.</p>
+    <p>Outside of school, I volunteer weekly at Open Door Ministries, coordinating meal service for 75–100 homeless residents and funding the program myself through a part-time job at CVS. I also co-manage a 7-unit residential property portfolio and coach a MATHCOUNTS club at my middle school alma mater.</p>
+    <p>I'm currently a research intern at NC A&T's Applied Science & Technology Lab, working on synthetic bacteriophage genome engineering. I'm interested in embedded systems, signal processing, and building technology that actually fits the people it's meant to serve.</p>
+  </div>
+</div>
 
-  <!-- PROJECTS -->
-  <section id="projects">
+<!-- PROJECTS -->
+<div class="section-wrap" id="projects">
+  <div class="inner">
     <h2>Projects</h2>
 
     <div class="project">
@@ -289,16 +170,9 @@
         <span class="project-title">US AI Job Impact Predictor</span>
         <a href="ai-predictor.html" class="project-link">View project →</a>
       </div>
-      <p class="project-desc">
-        A web app that classifies 700+ US occupations by AI automation risk, with explainability,
-        career comparison, and skill recommendations. Built during my internship at ThinkNeuro, LLC.
-      </p>
+      <p class="project-desc">A web app that classifies 700+ US occupations by AI automation risk, with explainability, career comparison, and skill recommendations. Built during my internship at ThinkNeuro, LLC.</p>
       <div class="project-tags">
-        <span class="tag">Python</span>
-        <span class="tag">Streamlit</span>
-        <span class="tag">Pandas</span>
-        <span class="tag">Plotly</span>
-        <span class="tag">Live App</span>
+        <span class="tag">Python</span><span class="tag">Streamlit</span><span class="tag">Pandas</span><span class="tag">Plotly</span><span class="tag">Live App</span>
       </div>
     </div>
 
@@ -307,16 +181,9 @@
         <span class="project-title">ODM Volunteer Scheduling Platform</span>
         <a href="odm.html" class="project-link">View project →</a>
       </div>
-      <p class="project-desc">
-        A scheduling and coordination tool built for Open Door Ministries after observing volunteer
-        coordination failures firsthand. Features a dashboard, calendar, volunteer roster, and push
-        notifications. Proposed to ODM leadership.
-      </p>
+      <p class="project-desc">A scheduling and coordination tool built for Open Door Ministries after observing volunteer coordination failures firsthand. Features a dashboard, calendar, volunteer roster, and push notifications. Proposed to ODM leadership.</p>
       <div class="project-tags">
-        <span class="tag">Python</span>
-        <span class="tag">Streamlit</span>
-        <span class="tag">Nonprofit</span>
-        <span class="tag">Live App</span>
+        <span class="tag">Python</span><span class="tag">Streamlit</span><span class="tag">Nonprofit</span><span class="tag">Live App</span>
       </div>
     </div>
 
@@ -325,23 +192,17 @@
         <span class="project-title">ECG Biosensor & Signal Analyzer</span>
         <a href="https://ecg-biosensor.streamlit.app/" target="_blank" class="project-link">Coming Summer 2026 →</a>
       </div>
-      <p class="project-desc">
-        A hardware-software project combining a custom ECG biosensor circuit with ML-based signal
-        analysis and a real-time dashboard. Bridges circuit design, signal processing, and machine learning.
-      </p>
+      <p class="project-desc">A hardware-software project combining a custom ECG biosensor circuit with ML-based signal analysis and a real-time dashboard. Bridges circuit design, signal processing, and machine learning.</p>
       <div class="project-tags">
-        <span class="tag">Python</span>
-        <span class="tag">Embedded Systems</span>
-        <span class="tag">ML</span>
-        <span class="tag">Signal Processing</span>
-        <span class="tag">In Progress</span>
+        <span class="tag">Python</span><span class="tag">Embedded Systems</span><span class="tag">ML</span><span class="tag">Signal Processing</span><span class="tag">In Progress</span>
       </div>
     </div>
+  </div>
+</div>
 
-  </section>
-
-  <!-- EXPERIENCE -->
-  <section id="experience">
+<!-- EXPERIENCE -->
+<div class="section-wrap" id="experience">
+  <div class="inner">
     <h2>Experience</h2>
 
     <div class="exp-item">
@@ -397,11 +258,12 @@
         <div class="exp-desc">Founded a MATHCOUNTS club at my middle school alma mater. Coached 10 students with 4 qualifying for regionals. 2× NC State MATHCOUNTS Qualifier myself (2022, 2023).</div>
       </div>
     </div>
+  </div>
+</div>
 
-  </section>
-
-  <!-- SKILLS -->
-  <section>
+<!-- SKILLS -->
+<div class="section-wrap">
+  <div class="inner">
     <h2>Skills</h2>
     <div class="skills-row">
       <div>
@@ -413,10 +275,12 @@
         <div class="skill-list">PCR · Gel Electrophoresis · Gibson Assembly<br>PID Control · CAD Tools</div>
       </div>
     </div>
-  </section>
+  </div>
+</div>
 
-  <!-- CONTACT -->
-  <section id="contact">
+<!-- CONTACT -->
+<div class="section-wrap" id="contact">
+  <div class="inner">
     <h2>Contact</h2>
     <div class="contact-links">
       <a href="mailto:srapuru@guilford.edu">📧 srapuru@guilford.edu</a>
@@ -424,8 +288,7 @@
       <a href="https://github.com/shrimaan-rapuru" target="_blank">🖥️ github.com/shrimaan-rapuru</a>
       <a href="https://share.streamlit.io/user/shrimaan-rapuru" target="_blank">🚀 Streamlit Apps</a>
     </div>
-  </section>
-
+  </div>
 </div>
 
 <footer>
