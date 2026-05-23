@@ -245,7 +245,27 @@
   <div class="inner">
     <div class="eyebrow">Featured Research</div>
     <div class="section-title">Real-Time ECG Biosensing & Signal Analysis</div>
-    <p style="font-size:0.88rem;color:#555;margin-bottom:1.5rem;max-width:56ch;line-height:1.75;">Investigating Low-Cost Biosensing Fidelity — can $20 open-source components achieve clinical-grade diagnostic accuracy through math and code?</p>
+    <p style="font-size:0.88rem;color:#555;margin-bottom:1.5rem;max-width:60ch;line-height:1.75;">Investigating Low-Cost Biosensing Fidelity — can $20 open-source components achieve clinical-grade diagnostic accuracy through math and code? Results show clean PQRST wave isolation, automated R-peak detection, and clinically meaningful HRV metrics.</p>
+
+    <!-- HRV METRICS CALLOUT -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e5e5e5;border:1px solid #e5e5e5;border-radius:8px;overflow:hidden;margin-bottom:1.75rem;">
+      <div style="background:#fff;padding:1rem;text-align:center;">
+        <div style="font-family:'Playfair Display',Georgia,serif;font-size:1.75rem;font-weight:600;color:#1a1a1a;">89.5</div>
+        <div style="font-size:0.68rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#999;margin-top:0.2rem;">BPM</div>
+      </div>
+      <div style="background:#fff;padding:1rem;text-align:center;">
+        <div style="font-family:'Playfair Display',Georgia,serif;font-size:1.75rem;font-weight:600;color:#1a1a1a;">17.63</div>
+        <div style="font-size:0.68rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#999;margin-top:0.2rem;">SDNN (ms)</div>
+      </div>
+      <div style="background:#fff;padding:1rem;text-align:center;">
+        <div style="font-family:'Playfair Display',Georgia,serif;font-size:1.75rem;font-weight:600;color:#1a1a1a;">23.65</div>
+        <div style="font-size:0.68rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#999;margin-top:0.2rem;">RMSSD (ms)</div>
+      </div>
+      <div style="background:#fff;padding:1rem;text-align:center;">
+        <div style="font-family:'Playfair Display',Georgia,serif;font-size:1.75rem;font-weight:600;color:#1a1a1a;">42</div>
+        <div style="font-size:0.68rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#999;margin-top:0.2rem;">Peaks Detected</div>
+      </div>
+    </div>
 
     <div class="ecg-grid">
       <!-- Real graphs -->
@@ -257,6 +277,10 @@
         <div>
           <img src="ecg_filtered_peaks.png" alt="Filtered ECG with R-Peak Detection" style="width:100%;border-radius:8px;border:1px solid #e5e5e5;">
         </div>
+        <div>
+          <img src="pqrst_wave.png" alt="PQRST Wave Analysis — Single Heartbeat" style="width:100%;border-radius:8px;border:1px solid #e5e5e5;">
+          <p style="font-size:0.72rem;color:#888;margin-top:0.4rem;line-height:1.6;">Single heartbeat PQRST wave analysis. P-wave (atrial depolarization), QRS complex (ventricular depolarization), and T-wave (ventricular repolarization) are clearly isolated — confirming filter fidelity and signal resolution at 533Hz.</p>
+        </div>
       </div>
 
       <div class="ecg-info">
@@ -266,7 +290,7 @@
         </div>
         <div>
           <div class="ecg-info-label">Algorithms</div>
-          <div class="ecg-info-val">Butterworth bandpass filter (0.5–40Hz) · Automated R-peak detection · HRV analysis</div>
+          <div class="ecg-info-val">Butterworth bandpass filter (0.5–40Hz) · Automated R-peak detection · PQRST wave isolation · HRV analysis (SDNN, RMSSD)</div>
         </div>
         <div>
           <div class="ecg-info-label">Stack</div>
@@ -275,8 +299,8 @@
           </div>
         </div>
         <div>
-          <div class="ecg-info-label">Result</div>
-          <div class="ecg-info-val">Resting heart rate: ~89 BPM. Clean R-peak detection from low-cost open-source hardware.</div>
+          <div class="ecg-info-label">Results</div>
+          <div class="ecg-info-val">BPM: 89.5 · SDNN: 17.63ms · RMSSD: 23.65ms · 42 peaks detected · Clean PQRST isolation confirmed</div>
         </div>
         <div>
           <div class="ecg-info-label">Target</div>
