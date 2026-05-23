@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shrimaan Rapuru</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      color: #1a1a1a;
+      background: #f8f9fa;
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      background: #fff;
+      border-bottom: 1px solid #e5e5e5;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-name { font-weight: 600; font-size: 1rem; color: #1a1a1a; text-decoration: none; }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a { font-size: 0.88rem; color: #555; text-decoration: none; transition: color 0.15s; }
+    .nav-links a:hover { color: #1a1a1a; }
+
+    .inner { max-width: 800px; margin: 0 auto; padding: 0 2rem; }
+
+    /* HERO */
+    .hero {
+      background: #fff;
+      border-bottom: 1px solid #e5e5e5;
+      padding: 5rem 0 4rem;
+    }
+    .hero-eyebrow {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 1rem;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 3rem;
+      font-weight: 600;
+      line-height: 1.1;
+      margin-bottom: 0.6rem;
+      letter-spacing: -0.01em;
+    }
+    .hero-sub {
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: #444;
+      margin-bottom: 1.25rem;
+    }
+    .hero-pitch {
+      font-size: 0.95rem;
+      color: #555;
+      max-width: 54ch;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: #1a1a1a;
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 0.6rem 1.4rem;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background 0.15s;
+      margin-right: 0.75rem;
+      margin-bottom: 0.5rem;
+    }
+    .cta-btn:hover { background: #333; }
+    .cta-btn-outline {
+      display: inline-block;
+      background: transparent;
+      color: #1a1a1a;
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 0.6rem 1.4rem;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      text-decoration: none;
+      transition: border-color 0.15s;
+      margin-bottom: 0.5rem;
+    }
+    .cta-btn-outline:hover { border-color: #1a1a1a; }
+
+    /* SECTION WRAP */
+    .section-wrap {
+      background: #fff;
+      border-bottom: 1px solid #e5e5e5;
+      padding: 3rem 0;
+    }
+
+    .section-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #999;
+      margin-bottom: 0.4rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+    }
+    .section-subtitle {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 2rem;
+      max-width: 52ch;
+      line-height: 1.7;
+    }
+
+    /* ECG FEATURED PROJECT */
+    .ecg-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    .ecg-visual {
+      background: #0f1117;
+      border-radius: 8px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .ecg-visual-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #666;
+    }
+    .signal-row { display: flex; flex-direction: column; gap: 0.3rem; }
+    .signal-label { font-size: 0.65rem; color: #555; letter-spacing: 0.06em; }
+    /* Noisy signal SVG */
+    .ecg-stack { display: flex; flex-direction: column; gap: 0.5rem; }
+
+    .ecg-info { display: flex; flex-direction: column; gap: 1.25rem; }
+    .ecg-info-block { }
+    .ecg-info-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #999;
+      margin-bottom: 0.3rem;
+    }
+    .ecg-info-val { font-size: 0.88rem; color: #444; line-height: 1.7; }
+    .ecg-info-val code {
+      font-family: 'Courier New', monospace;
+      font-size: 0.82rem;
+      background: #f0f4f8;
+      padding: 0.1rem 0.35rem;
+      border-radius: 3px;
+      color: #2d5a8e;
+    }
+
+    .code-block {
+      background: #0f1117;
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem;
+      overflow-x: auto;
+      margin-top: 1.5rem;
+    }
+    .code-block pre {
+      font-family: 'Courier New', monospace;
+      font-size: 0.8rem;
+      line-height: 1.7;
+      color: #abb2bf;
+      white-space: pre;
+    }
+    .kw { color: #c678dd; }
+    .fn { color: #61afef; }
+    .st { color: #98c379; }
+    .cm { color: #5c6370; font-style: italic; }
+    .nm { color: #e5c07b; }
+
+    .ecg-links { display: flex; gap: 0.75rem; margin-top: 1.5rem; flex-wrap: wrap; }
+
+    /* EXPERIENCE TRACKS */
+    .tracks { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-top: 1.5rem; }
+    .track {
+      border: 1px solid #e5e5e5;
+      border-radius: 8px;
+      padding: 1.5rem;
+      background: #f8f9fa;
+    }
+    .track-icon { font-size: 1.4rem; margin-bottom: 0.75rem; }
+    .track-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+    .track-focus { font-size: 0.8rem; color: #666; margin-bottom: 0.75rem; line-height: 1.6; }
+    .track-highlight {
+      font-size: 0.78rem;
+      color: #444;
+      border-top: 1px solid #e5e5e5;
+      padding-top: 0.75rem;
+      line-height: 1.6;
+    }
+
+    /* PROJECTS */
+    .project { margin-bottom: 1.75rem; padding-bottom: 1.75rem; border-bottom: 1px solid #f0f0f0; }
+    .project:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+    .project-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 0.4rem; }
+    .project-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+    .project-link { font-size: 0.8rem; color: #555; text-decoration: none; white-space: nowrap; border-bottom: 1px solid #ccc; }
+    .project-link:hover { color: #1a1a1a; border-color: #1a1a1a; }
+    .project-desc { font-size: 0.88rem; color: #555; line-height: 1.75; margin-bottom: 0.6rem; }
+    .project-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+    .tag { font-size: 0.7rem; color: #777; background: #f0f4f8; padding: 0.2rem 0.5rem; border-radius: 3px; }
+
+    /* SKILLS TABLE */
+    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+    th { text-align: left; font-size: 0.7rem; font-weight: 600; color: #999; text-transform: uppercase; letter-spacing: 0.08em; padding: 0.5rem 0.75rem; border-bottom: 1px solid #e5e5e5; }
+    td { padding: 0.6rem 0.75rem; border-bottom: 1px solid #f0f0f0; color: #444; vertical-align: top; }
+    tr:last-child td { border-bottom: none; }
+    tbody tr:nth-child(odd) { background: #fff; }
+    tbody tr:nth-child(even) { background: #f8f9fa; }
+
+    /* CONTACT */
+    .contact-links { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1rem; }
+    .contact-links a { font-size: 0.9rem; color: #444; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
+    .contact-links a:hover { color: #1a1a1a; }
+    .contact-closing { font-size: 0.92rem; color: #555; line-height: 1.8; max-width: 52ch; margin-bottom: 1.5rem; }
+
+    footer {
+      background: #fff;
+      border-top: 1px solid #e5e5e5;
+      padding: 1.5rem 2rem;
+      text-align: center;
+      font-size: 0.78rem;
+      color: #aaa;
+    }
+
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav-links { gap: 1rem; }
+      .inner { padding: 0 1.25rem; }
+      .hero h1 { font-size: 2.2rem; }
+      .ecg-grid { grid-template-columns: 1fr; }
+      .tracks { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-name">Shrimaan Rapuru</a>
+  <ul class="nav-links">
+    <li><a href="#research">Research</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="inner">
+    <div class="hero-eyebrow">Engineer · Researcher · Builder</div>
+    <h1>Shrimaan Rapuru</h1>
+    <p class="hero-sub">Developer, Researcher, & Community Organizer.</p>
+    <p class="hero-pitch">I build low-cost hardware solutions, optimize data pipelines, and develop software to bridge the gap between technical innovation and community impact.</p>
+    <a href="#research" class="cta-btn">View Featured Research</a>
+    <a href="#contact" class="cta-btn-outline">Get in Touch</a>
+  </div>
+</div>
+
+<!-- FEATURED: ECG PROJECT -->
+<div class="section-wrap" id="research">
+  <div class="inner">
+    <div class="section-eyebrow">Featured Research</div>
+    <div class="section-title">Real-Time ECG Biosensing & Signal Analysis</div>
+    <div class="section-subtitle">Investigating Low-Cost Biosensing Fidelity — Can $20 open-source components achieve clinical-grade diagnostic accuracy through math and code?</div>
+
+    <div class="ecg-grid">
+      <!-- Visual side -->
+      <div class="ecg-visual">
+        <div class="ecg-visual-label">Signal Processing Pipeline</div>
+
+        <!-- Noisy raw signal -->
+        <div class="signal-row">
+          <div class="signal-label" style="color:#666;">RAW SIGNAL (noisy)</div>
+          <svg viewBox="0 0 280 50" xmlns="http://www.w3.org/2000/svg" style="width:100%;">
+            <polyline points="0,28 5,24 8,32 12,20 15,30 18,25 22,35 26,22 30,28 34,18 38,32 42,25 46,20 50,30 54,26 58,33 62,19 66,28 70,22 74,35 78,27 82,15 84,5 86,42 88,8 90,28 94,24 98,33 102,20 106,29 110,24 114,33 118,21 122,28 126,18 130,31 134,23 138,26 142,14 144,4 146,44 148,7 150,27 154,23 158,32 162,20 166,29 170,25 174,34 178,22 182,27 186,17 190,30 194,24 198,33 202,21 206,28 210,16 212,5 214,43 216,8 218,27 222,23 226,31 230,20 234,28 238,24 242,32 246,22 250,27 254,17 258,31 262,23 266,27 270,20 274,28 278,25 280,27"
+              fill="none" stroke="#4a5568" stroke-width="1.2"/>
+          </svg>
+        </div>
+
+        <!-- Filtered clean signal -->
+        <div class="signal-row">
+          <div class="signal-label" style="color:#48bb78;">FILTERED SIGNAL · R-peaks detected</div>
+          <svg viewBox="0 0 280 50" xmlns="http://www.w3.org/2000/svg" style="width:100%;">
+            <polyline points="0,28 6,27 12,27 18,27 22,26 24,24 26,20 28,26 30,27 36,27 42,27 46,26 48,24 50,20 52,26 54,27 60,27 66,27 70,26 72,23 74,15 76,6 78,40 80,10 82,25 84,27 90,27 96,27 100,26 102,23 104,15 106,6 108,40 110,10 112,25 114,27 120,27 126,27 130,26 132,23 134,15 136,6 138,40 140,10 142,25 144,27 150,27 156,27 160,26 162,23 164,15 166,6 168,40 170,10 172,25 174,27 180,27 186,27 190,26 192,23 194,15 196,6 198,40 200,10 202,25 204,27 210,27 216,27 220,26 222,23 224,15 226,6 228,40 230,10 232,25 234,27 240,27 246,27 250,26 252,23 254,15 256,6 258,40 260,10 262,25 264,27 270,27 276,27 280,27"
+              fill="none" stroke="#48bb78" stroke-width="1.5"/>
+            <!-- R-peak markers -->
+            <circle cx="77" cy="6" r="3" fill="#f6ad55" opacity="0.9"/>
+            <circle cx="107" cy="6" r="3" fill="#f6ad55" opacity="0.9"/>
+            <circle cx="137" cy="6" r="3" fill="#f6ad55" opacity="0.9"/>
+            <circle cx="167" cy="6" r="3" fill="#f6ad55" opacity="0.9"/>
+            <circle cx="197" cy="6" r="3" fill="#f6ad55" opacity="0.9"/>
+            <circle cx="227" cy="6" r="3" fill="#f6ad55" opacity="0.9"/>
+            <circle cx="257" cy="6" r="3" fill="#f6ad55" opacity="0.9"/>
+          </svg>
+        </div>
+
+        <div style="display:flex;gap:1rem;margin-top:0.25rem;">
+          <span style="font-size:0.65rem;color:#48bb78;">● Filtered ECG</span>
+          <span style="font-size:0.65rem;color:#f6ad55;">● R-peaks</span>
+          <span style="font-size:0.65rem;color:#4a5568;">● Raw signal</span>
+        </div>
+      </div>
+
+      <!-- Info side -->
+      <div class="ecg-info">
+        <div class="ecg-info-block">
+          <div class="ecg-info-label">Hardware</div>
+          <div class="ecg-info-val">Arduino Uno + <code>AD8232</code> ECG Sensor (~$20 total)</div>
+        </div>
+        <div class="ecg-info-block">
+          <div class="ecg-info-label">Signal Processing</div>
+          <div class="ecg-info-val"><code>SciPy</code> Butterworth bandpass filter · Pan-Tompkins Algorithm for R-peak detection · HRV analysis</div>
+        </div>
+        <div class="ecg-info-block">
+          <div class="ecg-info-label">Software Stack</div>
+          <div class="ecg-info-val"><code>Python</code> · <code>NumPy</code> · <code>SciPy</code> · <code>Streamlit</code> · <code>Plotly</code></div>
+        </div>
+        <div class="ecg-info-block">
+          <div class="ecg-info-label">The Target</div>
+          <div class="ecg-info-val">Lowering the barrier to medical diagnostics in resource-limited environments through low-cost, open-source biosensing.</div>
+        </div>
+        <div class="ecg-info-block">
+          <div class="ecg-info-label">Status</div>
+          <div class="ecg-info-val">In development · Summer 2026</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Code snippet -->
+    <div class="code-block">
+<pre><span class="cm"># Butterworth bandpass filter + Pan-Tompkins R-peak detection</span>
+<span class="kw">from</span> scipy.signal <span class="kw">import</span> butter, filtfilt
+<span class="kw">import</span> numpy <span class="kw">as</span> np
+
+<span class="kw">def</span> <span class="fn">bandpass_filter</span>(signal, lowcut=<span class="nm">0.5</span>, highcut=<span class="nm">40.0</span>, fs=<span class="nm">500</span>, order=<span class="nm">4</span>):
+    nyq = <span class="nm">0.5</span> * fs
+    low, high = lowcut / nyq, highcut / nyq
+    b, a = <span class="fn">butter</span>(order, [low, high], btype=<span class="st">'band'</span>)
+    <span class="kw">return</span> <span class="fn">filtfilt</span>(b, a, signal)
+
+<span class="kw">def</span> <span class="fn">detect_r_peaks</span>(filtered_ecg, fs=<span class="nm">500</span>):
+    <span class="cm"># Differentiate → square → moving window integration</span>
+    diff = np.<span class="fn">diff</span>(filtered_ecg)
+    squared = diff ** <span class="nm">2</span>
+    window = <span class="nm">int</span>(<span class="nm">0.150</span> * fs)  <span class="cm"># 150ms integration window</span>
+    integrated = np.<span class="fn">convolve</span>(squared, np.<span class="fn">ones</span>(window)/window, mode=<span class="st">'same'</span>)
+    threshold = np.<span class="fn">mean</span>(integrated) * <span class="nm">1.5</span>
+    <span class="kw">return</span> np.<span class="fn">where</span>(integrated > threshold)[<span class="nm">0</span>]</pre>
+    </div>
+
+    <div class="ecg-links">
+      <a href="https://ecg-biosensor.streamlit.app/" target="_blank" class="cta-btn">View Project Page</a>
+      <a href="https://github.com/shrimaan-rapuru" target="_blank" class="cta-btn-outline">GitHub</a>
+    </div>
+  </div>
+</div>
+
+<!-- EXPERIENCE TRACKS -->
+<div class="section-wrap" id="experience">
+  <div class="inner">
+    <div class="section-eyebrow">Background</div>
+    <div class="section-title">Three Tracks, One Thread</div>
+    <div class="section-subtitle">Engineering, community leadership, and clinical practice — each informing the others.</div>
+
+    <div class="tracks">
+      <div class="track">
+        <div class="track-icon">⚙️</div>
+        <div class="track-title">Engineering & Research</div>
+        <div class="track-focus">Embedded systems, signal processing, predictive modeling, and data pipelines.</div>
+        <div class="track-highlight">
+          Research Intern @ NC A&T (Bacteriophage Genome Engineering)<br><br>
+          Software & Data Science Intern @ ThinkNeuro<br><br>
+          Hardware & Controls Lead, FTC Robotics — NC State Championship Qualifier (2024)
+        </div>
+      </div>
+      <div class="track">
+        <div class="track-icon">🤝</div>
+        <div class="track-title">Community Leadership</div>
+        <div class="track-focus">Nonprofit coordination, logistics, education, and community-centered system design.</div>
+        <div class="track-highlight">
+          Community Service Leader @ Open Door Ministries — 75–100 residents weekly<br><br>
+          Founder & Head Coach @ MATHCOUNTS Club — 4 students qualified for regionals<br><br>
+          Teaching Assistant, AP English Language & Composition
+        </div>
+      </div>
+      <div class="track">
+        <div class="track-icon">💊</div>
+        <div class="track-title">Clinical Practice</div>
+        <div class="track-focus">Pharmacy operations, healthcare systems, and patient safety compliance.</div>
+        <div class="track-highlight">
+          NC Board Certified Pharmacy Technician @ CVS Pharmacy<br><br>
+          High-volume retail pharmacy environment — medication fulfillment and patient services<br><br>
+          Hands-on exposure to healthcare delivery and clinical workflows
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- OTHER PROJECTS -->
+<div class="section-wrap" id="projects">
+  <div class="inner">
+    <div class="section-eyebrow">Other Projects</div>
+    <div class="section-title">More Builds</div>
+
+    <div class="project">
+      <div class="project-header">
+        <span class="project-title">US AI Job Impact Predictor</span>
+        <a href="ai-predictor.html" class="project-link">View project →</a>
+      </div>
+      <p class="project-desc">A publicly deployed web application designed to help students explore how AI and automation may influence future careers, workforce trends, and skill demand through interactive data visualization and AI-driven analysis.</p>
+      <div class="project-tags">
+        <span class="tag">Python</span><span class="tag">Streamlit</span><span class="tag">Pandas</span><span class="tag">Plotly</span><span class="tag">Live App</span>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-header">
+        <span class="project-title">ODM Volunteer Scheduling Platform</span>
+        <a href="odm.html" class="project-link">View project →</a>
+      </div>
+      <p class="project-desc">A coordination and scheduling system focused on improving organizational reliability, communication efficiency, and workflow management through structured digital scheduling and user-centered system design.</p>
+      <div class="project-tags">
+        <span class="tag">Python</span><span class="tag">Streamlit</span><span class="tag">Nonprofit</span><span class="tag">Live App</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<div class="section-wrap">
+  <div class="inner">
+    <div class="section-eyebrow">Skills</div>
+    <div class="section-title">Technical Stack</div>
+    <table>
+      <thead><tr><th>Area</th><th>Tools & Technologies</th></tr></thead>
+      <tbody>
+        <tr><td>Languages</td><td>Python · JavaScript · HTML/CSS · Git</td></tr>
+        <tr><td>Data & ML</td><td>NumPy · Pandas · SciPy · Plotly · Streamlit · Jupyter</td></tr>
+        <tr><td>Signal Processing</td><td>Butterworth Filter · Pan-Tompkins Algorithm · FFT · HRV Analysis</td></tr>
+        <tr><td>Hardware</td><td>Arduino · AD8232 ECG Sensor · REV Control Hub · PID Control · CAD</td></tr>
+        <tr><td>Lab Techniques</td><td>PCR · Gel Electrophoresis · Gibson Assembly · Cleanroom Protocols</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="section-wrap" id="contact">
+  <div class="inner">
+    <div class="section-eyebrow">Contact</div>
+    <div class="section-title">Get in Touch</div>
+    <p class="contact-closing">I'm currently exploring opportunities in biomedical engineering, intelligent systems, and computational healthcare while continuing to develop projects that connect technology with meaningful real-world impact.</p>
+    <div class="contact-links">
+      <a href="mailto:srapuru@guilford.edu">📧 srapuru@guilford.edu</a>
+      <a href="https://linkedin.com/in/shrimaan-rapuru-439689329" target="_blank">💼 linkedin.com/in/shrimaan-rapuru-439689329</a>
+      <a href="https://github.com/shrimaan-rapuru" target="_blank">🖥️ github.com/shrimaan-rapuru</a>
+      <a href="https://share.streamlit.io/user/shrimaan-rapuru" target="_blank">🚀 Streamlit Apps</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  © 2026 Shrimaan Rapuru · Built with HTML & CSS
+</footer>
+
+</body>
+</html>
